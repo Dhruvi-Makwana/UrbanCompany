@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <title>Merchant-register</title>
+    <style>
+
+
+        img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 50%;
+
+        /* border: 1px solid black; */
+      }
+      .occolor
+      {
+        text-align: center;
+        color:#514644;
+        font-family:Lucida Console;
+        font-size: 18px;
+      }
+      .days
+      {
+        color:#291d14;
+        font-family:Lucida Console;
+        font-size: 20px;
+      }
+      #animcon
+      {
+        /* padding-top: 20px; */
+        padding-right: 40px;
+      }
+
+      .maindiv
+      {
+        width: 750px;
+        background: #dddddd85;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+
+      }
+      .imgdiv
+      {
+        height: 150px;
+        padding: 0%;
+      }
+      .secondrow
+      {
+        margin-right: 90px;
+        margin-left: 90px;
+      }
+      .collprow
+      {
+
+        margin-left: 0px;
+        height: 40px;
+      }
+      .formrow
+      {
+        width: 600px;
+        margin: auto;
+      }
+      a{
+        text-decoration: none;
+        font-family:fantasy;
+        font-size: 20px;
+      }
+      a:hover
+      {
+        text-decoration: none;
+      }
+      #demo2
+      {
+        text-decoration: none;
+        color: black;
+      }
+      .merchanttext
+      {
+        font-size: 40px;
+        text-align: center;
+        font-family: "Brush Script MT", cursive;
+      }
+
+
+
+      /* css for magic suggest */
+    .autocomplete {
+        position: relative;
+         display: inline-block;
+        }
+
+    input {
+        border: 1px solid transparent;
+        background-color: white;
+        padding: 5px;
+        font-size: 16px;
+}
+
+    input[type=text] {
+    background-color: white;
+    width: 100%;
+    }
+
+    .ownerimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/pencil-square.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+    .phoneimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/telephone-fill.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+ .emailimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/envelope-at.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+.addressimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/shop.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+#myinput
+{
+    width: 200px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/card-list.svg' %}' );
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+    input[type=submit] {
+        background-color: DodgerBlue;
+        color: #fff;
+        cursor: pointer;
+}
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+}
+
+    .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff;
+        border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+    .autocomplete-items div:hover {
+        background-color: white;
+}
+
+/*when navigating through the items using the arrow keys:*/
+    .autocomplete-active {
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+
+
+    </style>
+</head>
+<body>
+    <h1 class="display-4 pt-2 mt-3 merchanttext">
+        Merchant Register
+     </h1>
+    <div class="container rounded-4 mt-5 maindiv mt-2 mb-5">
+    <div class="row">
+        <div class="row collprow pt-2 mb-3 mt-3">
+            <div class="col-1">
+                <img src="{% static 'images/add.png' %}" height="30px" width="30px m-0">
+            </div>
+            <div class="col-10">
+                <a href="#demo2" data-toggle="collapse" parent="#accordion" class="toggleclass"> Personal Information</a>
+            </div>
+            <div class="col-1">
+                <div class="m-2">
+                    <img src="{% static 'images/caret-down-fill (1).svg' %}">
+                </div>
+            </div>
+        </div>
+
+        <div id="demo2" class="row panel-collapse collapse formrow">
+
+
+            <div class="mt-4" id="animcon">
+                <div class="imgdiv">
+                    <img src="" alt="Cinque Terre" height="150px" width="150px" id="target">
+                </div>
+                <div class="mb-3 mt-2" style="text-align: center;">
+                    <form method="post" runat="server" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <!-- <img type="img" class="btn btn-primary">Edit Profile Picture</button> -->
+                    <label for="image" class="btn"><img src="{% static 'images/camera.svg' %}" height="20px" width="20px"></label>
+                    <input type="file" id="image" name="{{ addstore.image.html_name }}" accept="image/*">
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- <h3 style="text-align: center;color:#514644; font-family:Cursive; font-size:40px;">Personal information</h3> -->
+            <form method="post"  action="homepage.html">
+                   {% csrf_token %}
+                <div class="mt-4 ">
+                    <input type="text" class="form-control bg-white ownerimg" placeholder="Owner's Name" id="username" name="{{ merchantform.username.html_name }}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+
+                <div class="mt-4 ">
+                    <input type="password" class="form-control bg-white ownerimg" id="pass" placeholder="password" name="{{ merchantform.password.html_name }}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+
+                <div class="mt-4">
+                    <input type="number" class="form-control bg-light phoneimg"  id="phone" placeholder="Enter phone number" name="{{ merchantform.mobile_number.html_name }}">
+                </div>
+                <div class="mt-4">
+
+                    <input type="email" class="form-control bg-white emailimg"  id="email" placeholder="Enter email" name="{{ merchantform.email.html_name }}">
+                </div>
+                <div class="mt-4">
+                    <input type="text" class="form-control bg-white addressimg" id="addressline1"  placeholder="Address Line1" name="{{ addmerchantaddressform.address_line1.html_name }}">
+                </div>
+                <div class="mt-4">
+                    <input type="text" class="form-control bg-white addressimg" id="addressline2" placeholder="Address Line2" name="{{ addmerchantaddressform.city_name.html_name}} ">
+                </div>
+
+                <div class="mt-4">
+
+                    <!-- <input id="myInput" type="text" name="myCountry" placeholder="Category" class="form-control bg-white"> -->
+                    <select class="form-select form-select-lg" id="select1" name="{{ merchantform.category }}">
+<!--                        <option></option>-->
+<!--                        <option>{{ i.category }}</option>-->
+                    </select>
+
+                </div>
+
+                <div class="mb-4 mt-3" style="text-align:center;">
+                    <button type="submit" class="btn btn-primary" value="submit" id="submit">save</button>
+                </div>
+            </form>
+
+
+    </div>
+    </div>
+    </div>
+
+    <div class="container rounded-4 mt-5 maindiv mb-5">
+    <div class="row">
+        <div class="row collprow mb-3 mt-3 pt-2">
+            <div class="col-1">
+                <img src="{% static 'images/store.png' %}" height="30px" width="30px m-0">
+            </div>
+            <div class="col">
+                <a href="#demo1" data-toggle="collapse" parent="#accordion" class="toggleclass">Manage Shop timing</a>
+            </div>
+            <div class="col-1">
+                <div class="m-2">
+                    <img src="{% static 'images/caret-down-fill (1).svg' %}">
+                </div>
+            </div>
+        </div>
+
+        <div id="demo1" class="panel-collapse collapse formrow">
+            <!-- <h3 style="text-align: center;color:black; font-family:Cursive; font-size:40px;"><u><b>Shop Timing</b></u></h3> -->
+            <form >
+                <div class="mt-4 ">
+                    <input type="text" class="form-control bg-white" placeholder="Store Name" name="{{ addstore.name.html_name }}">
+
+                </div>
+                <div class="mt-4">
+                        <a type="button" onclick="getlocation()" class="border border-1 form-control">Get Direction</a>
+                    </div>
+                <div class="mt-4 row" id="showtable">
+
+                    <input type="text" class="col m-1" placeholder="Latitude: 0.0.0.0" id="letitude" readonly="readonly">
+                    <input type="text" class="col m-1" placeholder="Longtude: 0.0.0.0" id="longitude" readonly="readonly">
+<!--                            <table class="table table-bordered">-->
+<!--                                <tr>-->
+<!--                                    <td id="letitude"><input type="text">Latitude: 0.0.0.0</td>-->
+<!--                                    <td id="longitude"><input type="text">Longitude: 0.0.0.0</td>-->
+<!--                                </tr>-->
+
+<!--                            </table>-->
+                </div>
+                <!-- <br><br> -->
+                <label for="opentime" class="occolor">Opening Time:</label>
+                <input type="time" name="opentime" id="otime" class="bg-white">
+
+                <label for="closetime" class="occolor ms-4">Closing Time:</label>
+                <input type="time" name="closetime" id="ctime" class="bg-white" oninput="settime1()"> <br><br>
+                <input type="checkbox" name="check" disabled="true" id="everydaytime" onclick="timeset()"><span class="days"> Set above opening time and closing time for each day.</span>
+
+                <br><br>
+                <div class="row p-2">
+                    <span class="col p-2"></span>
+                    <label class="col occolor">Opening Time:</label>
+                    <label class="col ms-3 occolor" >Closing Time:</label>
+                    <label class="col occolor" >OPEN/CLOSE</label>
+
+                </div>
+                <div class="row p-2">
+                    <h5 class="col days">Sunday:</h5>
+                    <input type="time" class="col bg-white" name="{{ settime.start_time.html_name}}" disabled="true" id="opentime">
+                    <input type="time" class="col ms-3 bg-white" name="{{ settime.end_time.html_name}}" disabled="true" id="closetime">
+                        <input type="checkbox" class="col" name="sunday" onclick="sundaychecked()" id="sundaycheckbox">
+                </div>
+
+                <div class="row p-2">
+                    <h5 class="col days">Monday:</h5>
+                    <input type="time" class="col bg-white" disabled="true" id="monday" name="{{ settime.start_time.html_name}}">
+                    <input type="time" class="col ms-3 bg-white" disabled="true" id="monday1" name="{{ settime.end_time.html_name}}">
+                    <input type="checkbox" class="col bg-white" onclick="mondaychecked()" id="mondaycheckbox">
+
+                </div>
+
+                <div class="row p-2">
+                    <h5 class="col days">Tuesday:</h5>
+                    <input type="time" class="col bg-white" disabled="true" id="tuesday" name="{{ settime.start_time.html_name}}">
+                    <input type="time" class="col ms-3 bg-white" disabled="true" id="tuesday1" name="{{ settime.end_time.html_name}}">
+                    <input type="checkbox" class="col bg-white" onclick="tuesdaychecked()" id="tuesdaycheckbox">
+                </div>
+
+                <div class="row p-2">
+                    <h5 class="col days">Wednesday:</h5>
+                    <input type="time" class="col bg-white" disabled="true" id="wednesday" name="{{ settime.start_time.html_name}}">
+                    <input type="time" class="col ms-3 bg-white" disabled="true" id="wednesday1" name="{{ settime.end_time.html_name}}">
+                    <input type="checkbox" class="col bg-white" onclick="wednesdaychecked()" id="wednesdaycheckbox">
+                </div>
+
+                <div class="row p-2">
+                    <h5 class="col days">Thursday:</h5>
+                    <input type="time" class="col bg-white" disabled="true" id="thursday" name="{{ settime.start_time.html_name}}">
+                    <input type="time" class="col ms-3 bg-white" disabled="true" id="thursday1" name="{{ settime.end_time.html_name}}">
+                    <input type="checkbox" class="col bg-white" onclick="thursdaychecked()" id="thursdaycheckbox">
+                </div>
+
+                <div class="row p-2">
+                    <h5 class="col days">Friday:</h5>
+                    <input type="time" class="col bg-white" disabled="true" id="friday" name="{{ settime.start_time.html_name}}">
+                    <input type="time" class="col ms-3 bg-white" disabled="true" id="friday1" name="{{ settime.end_time.html_name}}">
+                    <input type="checkbox" class="col bg-white" onclick="fridaychecked()"id="fridaycheckbox">
+                </div>
+
+                <div class="row p-2">
+                    <h5 class="col days">Saturday:</h5>
+                    <input type="time" class="col bg-white" disabled="true" id="saturday" name="{{ settime.start_time.html_name}}">
+                    <input type="time" class="col ms-3 bg-white" disabled="true" id="saturday1" name="{{ settime.end_time.html_name}}">
+                    <input type="checkbox" class="col bg-white" onclick="saturdaychecked()" id="saturdaycheckbox">
+                </div>
+
+                 <br>
+                 <div class="mb-4 mt-0" style="text-align: center;">
+                    <button type="button" class="btn btn-primary" id="sub">save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+//location script
+var leti = document.getElementById("letitude");
+    var long = document.getElementById("longitude");
+    function getlocation()
+    {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else
+        {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        // document.querySelector(
+        //           "#showtable").style.visibility = "visible";
+  leti.innerHTML = "Latitude: " + position.coords.latitude;
+
+  long.innerHTML="Longitude: " + position.coords.longitude;
+}
+
+
+//set merchant image
+storeFileImage = null;
+function showImage(image,target) {
+  var fr=new FileReader();
+  // when image is loaded, set the src of the image where you want to display it
+  fr.onload = function(e) { target.src = this.result; };
+  image.addEventListener("change",function() {
+    // fill fr with image data
+    storeFileImage = image.files[0]
+    fr.readAsDataURL(image.files[0]);
+  });
+}
+
+var src = document.getElementById("image");
+var target = document.getElementById("target");
+showImage(src,target);
+
+
+
+
+// on check box click automatic fill everyday timming
+
+function timeset()
+{
+    if($('#everydaytime').is(":checked"))
+    {
+        const a = document.getElementById("otime").value;
+        const b  =document.getElementById("ctime").value;
+        document.getElementById("opentime").value = a;
+        document.getElementById("closetime").value = b;
+        document.getElementById("sundaycheckbox").checked = true;
+        document.getElementById("monday").value = a;
+        document.getElementById("monday1").value = b;
+        document.getElementById("mondaycheckbox").checked = true;
+        document.getElementById("tuesday").value= a ;
+        document.getElementById("tuesday1").value = b;
+        document.getElementById("tuesdaycheckbox").checked = true;
+        document.getElementById("wednesday").value = a;
+        document.getElementById("wednesday1").value = b;
+        document.getElementById("wednesdaycheckbox").checked = true;
+        document.getElementById("thursday").value = a;
+        document.getElementById("thursday1").value = b;
+        document.getElementById("thursdaycheckbox").checked = true;
+        document.getElementById("friday").value = a;
+        document.getElementById("friday1").value = b;
+        document.getElementById("fridaycheckbox").checked = true;
+        document.getElementById("saturday").value = a;
+        document.getElementById("saturday1").value = b;
+        document.getElementById("saturdaycheckbox").checked = true;
+    }
+}
+
+ var gettime1 = document.getElementById("otime").value;
+ console.log(gettime1);
+
+
+    function settime1()
+    {
+    var t1 = document.getElementById("otime");
+    var t2 = document.getElementById("ctime");
+    var c = document.getElementById("everydaytime");
+    if(t1.value !== null && t2.value !== null)
+    {
+        c.removeAttribute("disabled");
+    }
+
+    }
+
+    function sundaychecked()
+    {
+        // $('#check').attr({disabled:false});
+        var check = document.getElementById("opentime");
+        var check2 = document.getElementById("closetime");
+        var ch1 = document.getElementById("sundaycheckbox");
+        if(ch1.checked)
+        {
+        check.removeAttribute("disabled");
+        check2.removeAttribute("disabled");
+        }
+        else
+        {
+            document.getElementById("opentime").disabled = true;
+            document.getElementById("closetime").disabled = true
+        }
+        // check.setAttribute("disabled", false);
+        // document.getElementById("check").disabled = false;
+
+    }
+    function mondaychecked()
+    {
+        var ch2 = document.getElementById("mondaycheckbox");
+        var check = document.getElementById("monday");
+        var check2 = document.getElementById("monday1");
+        if(ch2.checked)
+        {
+        check.removeAttribute("disabled");
+        check2.removeAttribute("disabled");
+        }
+        else
+        {
+            document.getElementById("monday").disabled = true;
+            document.getElementById("monday1").disabled = true
+        }
+    }
+    function tuesdaychecked()
+    {
+        var ch3 = document.getElementById("tuesdaycheckbox");
+        var check = document.getElementById("tuesday");
+        var check2 = document.getElementById("tuesday1");
+        if(ch3.checked)
+        {
+            check.removeAttribute("disabled");
+            check2.removeAttribute("disabled");
+        }
+        else{
+            document.getElementById("tuesday").disabled = true;
+            document.getElementById("tuesday1").disabled = true;
+        }
+    }
+    function wednesdaychecked()
+    {
+        var ch4 = document.getElementById("wednesdaycheckbox");
+        var check = document.getElementById("wednesday");
+        var check2 = document.getElementById("wednesday1");
+        if(ch4.checked)
+        {
+
+
+        check.removeAttribute("disabled");
+        check2.removeAttribute("disabled");
+        }
+        else
+        {
+            document.getElementById("wednesday").disabled = true;
+            document.getElementById("wednesday1").disabled = true;
+        }
+    }
+    function thursdaychecked()
+    {
+        var ch5 = document.getElementById("thursdaycheckbox");
+        var check = document.getElementById("thursday");
+        var check2 = document.getElementById("thursday1");
+        if(ch5.checked)
+        {
+        check.removeAttribute("disabled");
+        check2.removeAttribute("disabled");
+        }
+        else{
+            document.getElementById("thursday").disabled = true;
+            document.getElementById("thursday1").disabled = true;
+        }
+    }
+    function fridaychecked()
+    {
+        var ch6 = document.getElementById("fridaycheckbox");
+        var check = document.getElementById("friday");
+        var check2 = document.getElementById("friday1");
+        if(ch6.checked)
+        {
+        check.removeAttribute("disabled");
+        check2.removeAttribute("disabled");
+        }
+        else{
+            document.getElementById("friday").disabled = true;
+            document.getElementById("friday1").disabled = true;
+
+        }
+    }
+    function saturdaychecked()
+    {
+        var ch7 = document.getElementById("saturdaycheckbox");
+        var check = document.getElementById("saturday");
+        var check2 = document.getElementById("saturday1");
+        if(ch7.checked)
+        {
+
+
+        check.removeAttribute("disabled");
+        check2.removeAttribute("disabled");
+        }
+        else{
+            document.getElementById("saturday").disabled = true;
+            document.getElementById("saturday1").disabled = true;
+        }
+    }
+
+
+
+
+
+var formData = new FormData();
+
+      $(document).on('click', '#submit', function(e) {
+         e.preventDefault()
+       formData.append('image', storeFileImage)
+        formData.append('username', $('#username').val())
+        formData.append('password', $('#pass').val())
+        formData.append('mobile_number', $('#phone').val())
+        formData.append('email', $('#email').val())
+        formData.append('address_line1', $('#addressline1').val())
+        formData.append('city_name', $('#addressline2').val())
+         formData.append('category', $('#select1').val())
+        //formData.append('action', 'create-post')
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+          $.ajax({
+              type: 'POST',
+              url: $(this).attr('action'),
+              data: formData,
+              cache: false,
+              processData: false,
+              contentType: false,
+              success: function (){
+                  alert('The post has been created!')
+              },
+              error: function(xhr, errmsg, err) {
+                  console.log(xhr.status + ":" + xhr.responseText)
+              }
+          })
+      })
+</script>
+</body>
+</html>

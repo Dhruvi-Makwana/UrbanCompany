@@ -1,0 +1,349 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <title>User-register</title>
+    <style>
+
+
+        img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 50%;
+
+        /* border: 1px solid black; */
+      }
+      .occolor
+      {
+        text-align: center;
+        color:#514644;
+        font-family:Lucida Console;
+        font-size: 18px;
+      }
+      .days
+      {
+        color:#291d14;
+        font-family:Lucida Console;
+        font-size: 20px;
+      }
+      #animcon
+      {
+        /* padding-top: 20px; */
+        padding-right: 40px;
+      }
+
+      .maindiv
+      {
+        width: 750px;
+        background: #dddddd85;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+
+      }
+      .imgdiv
+      {
+        height: 150px;
+        padding: 0%;
+      }
+      .secondrow
+      {
+        margin-right: 90px;
+        margin-left: 90px;
+      }
+      .collprow
+      {
+
+        margin-left: 0px;
+        height: 40px;
+      }
+      .formrow
+      {
+        width: 600px;
+        margin: auto;
+      }
+      a{
+        text-decoration: none;
+        font-family:fantasy;
+        font-size: 20px;
+      }
+      a:hover
+      {
+        text-decoration: none;
+      }
+      #demo2
+      {
+        text-decoration: none;
+        color: black;
+      }
+      .merchanttext
+      {
+        font-size: 40px;
+        text-align: center;
+        font-family: "Brush Script MT", cursive;
+      }
+
+
+
+      /* css for magic suggest */
+    .autocomplete {
+        position: relative;
+         display: inline-block;
+        }
+
+    input {
+        border: 1px solid transparent;
+        background-color: white;
+        padding: 5px;
+        font-size: 16px;
+}
+
+    input[type=text] {
+    background-color: white;
+    width: 100%;
+    }
+
+    .ownerimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+
+    background-image: url('{% static 'images/pencil-square.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+    .phoneimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    {% load static %}
+    background-image: url('{% static 'images/telephone-fill.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+.emailimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/envelope-at.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+.addressimg{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/shop.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+#myinput
+{
+    width: 200px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    background-color: none;
+    background-image: url('{% static 'images/card-list.svg' %}');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    outline: none;
+}
+    input[type=submit] {
+        background-color: DodgerBlue;
+        color: #fff;
+        cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+    <h1 class="display-4 pt-2 mt-3 merchanttext">
+        User Register
+     </h1>
+    <div class="container rounded-4 mt-5 maindiv mt-2 mb-5">
+    <div class="row">
+        <div class="row collprow pt-2 mb-3 mt-3">
+            <div class="col-1">
+                <img src="{% static 'images/add.png' %}"  height="30px" width="30px m-0">
+            </div>
+            <div class="col-10">
+                <a> Personal Information</a>
+            </div>
+            <div class="col-1">
+                <div class="m-2">
+                    <img src="{% static 'images/caret-down-fill (1).svg' %}" >
+                </div>
+            </div>
+        </div>
+
+        <div id="demo2" class="row formrow">
+
+
+            <div class="mt-4" id="animcon">
+                <div class="imgdiv">
+                    <img src="{% static 'images/person-circle.svg' %}" alt="Cinque Terre" height="150px" width="150px" id="target">
+                </div>
+                <div class="mb-3 mt-2" style="text-align: center;">
+                    <form method="post" runat="server" enctype="multipart/form-data">
+                     {% csrf_token %}
+                    <!-- <img type="img" class="btn btn-primary">Edit Profile Picture</button> -->
+                    <label for="image" class="btn form-control-file" id="chooseimgbtn"><img src="{% static 'images/camera.svg'%}" height="20px" width="20px"></label>
+                    <input type="file" id="image" name= "{{userform.user_profile.html_name }}" accept="image/*">
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- <h3 style="text-align: center;color:#514644; font-family:Cursive; font-size:40px;">Personal information</h3> -->
+            <form method="post" action="homepage.html">
+                 {% csrf_token %}
+                <div class="mt-4 ">
+                    <input type="text" id="username" class="form-control bg-white ownerimg" placeholder="User's Name" name="{{ userform.username.html_name }}" >
+
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+
+                <div class="mt-4 ">
+                    <input type="password" class="form-control bg-white ownerimg" id="pass" placeholder="password" name="{{ userform.password.html_name }}" >
+
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+
+                <div class="mt-4">
+                    <input type="number" class="form-control bg-light phoneimg" id="phone" placeholder="phone number" name="{{ userform.mobile_number.html_name }}">
+
+                </div>
+                <div class="mt-4">
+
+                    <input type="email" class="form-control bg-white emailimg" id="email" placeholder="Enter email" name="{{ userform.email.html_name }}">
+                </div>
+                <div class="mt-4">
+
+<!--                    <span id= "userid" style="display:hidden">{{ register.user }}</span>-->
+                    <input type="text" class="form-control bg-white addressimg" id="addressline1" placeholder="Address Line1" name="{{ addressform.address_line1.html_name }}">
+
+                </div>
+                <div class="mt-4">
+                    <input type="text" class="form-control bg-white addressimg" id="addressline2" placeholder="Address Line2" name="{{ addressform.city_name.html_name }}">
+
+                </div>
+
+
+                <div class="mb-4 mt-3" style="text-align:center;">
+                    <button type="submit" class="btn btn-primary" value="submit" id="submit" >save</button>
+                </div>
+            </form>
+
+    </div>
+    </div>
+    </div>
+
+<script>
+
+//location script
+var leti = document.getElementById("letitude");
+    var long = document.getElementById("longitude");
+    function getlocation()
+    {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else
+        {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        // document.querySelector(
+        //           "#showtable").style.visibility = "visible";
+  leti.innerHTML = "Latitude: " + position.coords.latitude;
+
+  long.innerHTML="Longitude: " + position.coords.longitude;
+}
+
+
+//set user image
+storeFileImage = null;
+function showImage(image,target) {
+  var fr =new FileReader();
+  // when image is loaded, set the src of the image where you want to display it
+  fr.onload = function(e) { target.src = this.result; };
+  image.addEventListener("change",function() {
+    // fill fr with image data
+    storeFileImage = image.files[0]
+    fr .readAsDataURL(image.files[0]);
+  });
+}
+var src = document.getElementById("image");
+var target = document.getElementById("target");
+showImage(src,target);
+
+
+var formData = new FormData();
+
+      $(document).on('click', '#submit', function(e) {
+      e.preventDefault()
+       formData.append('user_profile', storeFileImage)
+        formData.append('user_profile', $('input[type=file]')[0].files[0])
+        formData.append('username', $('#username').val())
+        formData.append('password', $('#pass').val())
+        formData.append('mobile_number', $('#phone').val())
+        formData.append('email', $('#email').val())
+        formData.append('address_line1 ', $('#addressline1').val())
+        formData.append('city_name', $('#addressline2').val())
+        console.log(formData, "formData")
+        //formData.append('action', 'create-post')
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
+          $.ajax({
+              type: 'POST',
+              url: $(this).attr('action'),
+              data: formData,
+              cache: false,
+              processData: false,
+              contentType: false,
+              success: function (){
+                  alert('The post has been created!')
+              },
+              error: function(xhr, errmsg, err) {
+                  console.log(xhr.status + ":" + xhr.responseText)
+              }
+          })
+      })
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body{
+             background: #dddddd85;
+       }
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container-fluid mt-3">
+            <div class="row m-3 p-3 ps-5 ms-5 mt-3">
+                <h1 style="color:black; text-align: center; font-family: Courier New; font-weight: 600;"><u> Login Form</u></h1>
+            </div>
+            <div class="row p-5 m-5">
+                <form method="post" style="color:white; text-align: center; font-family: Courier New;">
+                     {% csrf_token %}
+                    <div class="input-group mb-3 ms-5 ps-5">
+                        <span class="input-group-text">Username</span>
+<!--                        <input type="text" class="form-control" placeholder="Username" name="username">-->
+<!--                        {{ form.username.label_tag }}-->
+                        {{ form.username }}
+                    </div>
+
+                    <div class="input-group mb-3 ms-5 ps-5">
+<!--                        <input type="text" class="form-control" placeholder="Password" name="password">-->
+                        <span class="input-group-text">password</span>
+<!--                         {{ form.password.label_tag }}-->
+                         {{ form.password }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<body>-->
+<!--    <form method="post">-->
+<!--         {% csrf_token %}-->
+<!--&lt;!&ndash;            {{ form.as_p }}&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="submit" value="Save">&ndash;&gt;-->
+<!--    {{ form.username.label_tag }}-->
+<!--    {{ form.username }}-->
+<!--    <br><br>-->
+<!--    {{ form.password.label_tag }}-->
+<!--    {{ form.password }}-->
+<!--        <input type="submit" value="submit">-->
+<!--    </form>-->
+<!--</body>-->

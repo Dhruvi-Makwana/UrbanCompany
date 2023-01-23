@@ -4,12 +4,11 @@ from django.contrib.auth.views import (
     LoginView,
    )
 
-from django.views.generic import ListView, TemplateView, CreateView, DetailView
+from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView
 from .forms import (
     AddUser,
     AddUserAddress,
     AddMerchant,
-    AddMerchantAddress,
     AddStore,
     GetWeekday,
     UserLoginForm,
@@ -18,9 +17,10 @@ from .forms import (
 
 class HomePage(ListView):
     template_name = "user/homepage.html"
+    model = Category
 
     def get_queryset(self):
-        return Category.objects.filter(is_deleted=False)
+        return self.model.objects.filter(categorychoice__isnull=False)
 
 
 class StoreDetail(ListView):
@@ -29,7 +29,7 @@ class StoreDetail(ListView):
     context_object_name = 'store'
 
     def get_queryset(self):
-        return super().get_queryset().filter(category_id=self.kwargs.get('pk'))
+        return super().get_queryset().filter(category_id=self.kwargs.get('pk')).all()
 
 
 class ShopDetail(DetailView):
@@ -43,15 +43,19 @@ class TimeDetail(DetailView):
     template_name = "user/time_detail.html"
     model = SetWeekDays
     context_object_name = 'settime'
-    # extra_context = {'settime': SetWeekDays.objects.all()}
 
     def get_queryset(self):
-
-        return super().get_queryset().filter(store_name_id=self.kwargs.get('pk'))
+        return self.objects.model.filter(store_name_id=self.kwargs.get('pk')).all()
 
 
 class SelectUser(TemplateView):
     template_name = "user/userchoice.html"
+
+
+class UserUpdate(UpdateView):
+    model = User
+    template_name = "user/userregister.html"
+    fields = ['username', 'password', 'email', 'mobile_number', 'user_address']
 
 
 class UserRegister(CreateView):
@@ -66,6 +70,9 @@ class UserRegister(CreateView):
 
         if adduser.is_valid() and adduser_address.is_valid():
             adduser = adduser.save()
+            adduser.set_password(adduser.password)
+            adduser.save()
+
             adduser_address = adduser_address.save()
 
         return render(
@@ -78,52 +85,41 @@ class UserRegister(CreateView):
 class MerchantRegister(CreateView):
     template_name = 'user/merchant.html'
 
-    form_class = AddMerchant, AddMerchantAddress, AddStore, GetWeekday
+    form_class = AddMerchant, AddStore, GetWeekday
 
     def get(self, request, *args, **kwargs):
-        addmerchant_address = AddMerchantAddress()
-        addstore = AddStore()
-        getweekday = GetWeekday()
 
         return render(
             request,
             "user/merchant.html",
             {
                 "merchantform": AddMerchant(),
-                "addmerchantressform": addmerchant_address,
-                "addstore": addstore,
-                "getweekday": getweekday,
+                "addstore": AddStore(),
+                "getweekday": GetWeekday(),
 
             },
         )
 
     def post(self, request, *args, **kwargs):
-        cat = User.objects.all()
+
         merchant = AddMerchant(
-            request.POST, request.FILES, initial={"role": "merchant"}
-        )
-        addmerchant_address = AddMerchantAddress(request.POST)
-        addstore = AddStore(request.POST)
+            request.POST, initial={"role": "MERCHANT"})
+        addstore = AddStore(request.POST, request.FILES)
         getweekday = GetWeekday(request.POST)
 
-        # breakpoint()
-        if (
-            merchant.is_valid()
-            and addmerchant_address.is_valid()
-            and addstore.is_valid()
-        ):
-            breakpoint()
+        if merchant.is_valid():
             merchant.save()
-            addmerchant_address.save()
+        breakpoint()
+        if addstore.is_valid() and getweekday.is_valid():
             addstore.save()
+            getweekday.save()
+
         return render(
             request,
-            "user/merchant.html",
+            "user/homepage.html",
             {
                 "merchantform": merchant,
-                "addmerchantaddressform": addmerchant_address,
                 "addstore": addstore,
-                "cat": cat,
                 "getweekday": getweekday,
             },
         )

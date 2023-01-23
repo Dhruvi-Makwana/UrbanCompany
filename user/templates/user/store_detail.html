@@ -16,11 +16,12 @@
         }
         .headingteaxt
         {
-        /* font-size: 40px; */
+
         text-align: left;
         font-family: "Brush Script MT", cursive;
         font-weight: bold;
-			font-size: large;
+		font-size: large;
+		color:#514644;
         }
         .card1{
         border-radius: 4px;
@@ -35,7 +36,11 @@
          transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
     }
-
+    .imgstyle
+    {
+        height:200px;
+        margin-top: 30px;
+    }
     </style>
 </head>
 <body>
@@ -56,7 +61,7 @@
             <div class="card card1 mb-5" style="border-radius: 30px;">
                 <div class="row g-0">
                     <div class="col-3">
-                       <img src="{{u.image.url}}" class="img-fluid rounded-start" height="40px" width="210px">
+                       <img src="{{u.image.url}}" class="rounded imgstyle" height="100px" width="210px">
                     </div>
                     <div class="col-9">
                         <div class="card-body">

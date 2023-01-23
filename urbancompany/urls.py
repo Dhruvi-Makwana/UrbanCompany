@@ -18,9 +18,19 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from user.views import Login,SelectUser,UserRegister,MerchantRegister
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("homepage/", include('user.urls'))
+    path("homepage/", include('user.urls')),
+    path("", Login.as_view(), name='login'),
+    path("select_user/", SelectUser.as_view(), name="selectuser"),
+    path("select_user/user_register", UserRegister.as_view(), name="userregister"),
+    path(
+        "select_user/merchant_register",
+        MerchantRegister.as_view(),
+        name="merchantregister",
+    ),
+
 ]
 
 urlpatterns += (

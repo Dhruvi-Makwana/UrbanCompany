@@ -61,14 +61,10 @@ class Address(models.Model):
 
 class Category(models.Model):
     category = models.CharField(
-        choices=CATEGORY_CHOICE, blank=True, null=True, max_length=50
-    )
+        choices=CATEGORY_CHOICE, blank=True, null=True, max_length=50)
     photo = models.ImageField(
-        upload_to="profile/", height_field=None, width_field=None, max_length=100
-    )
+        upload_to="profile/", height_field=None, width_field=None, max_length=100)
     is_deleted = models.BooleanField(default=False)
-
-
 class Store(models.Model):
     name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
@@ -96,7 +92,7 @@ class User(AbstractUser):
 
     store_name = models.ManyToManyField(Store, related_name="user",blank=True)
     user_address = models.ForeignKey(
-        Address, blank=True, null=True, on_delete=models.CASCADE
+        Address, blank=True, null=True, on_delete=models.CASCADE, related_name="user_address"
     )
     user_profile = models.ImageField(
         upload_to="user_profile/",

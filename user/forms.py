@@ -12,7 +12,7 @@ class AddUser(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["username", "password", "mobile_number", "email", "user_profile"]
+        fields = ["username", "password", "mobile_number", "email", "user_profile", "user_address"]
 
 
 class AddUserAddress(forms.ModelForm):
@@ -27,21 +27,15 @@ class AddMerchant(forms.ModelForm):
         fields = ["username", "password", "mobile_number", "email", "role"]
 
 
-class AddMerchantAddress(forms.ModelForm):
-    class Meta:
-        model = Address
-        fields = ["address_line1","city_name"]
-
-
 class AddStore(forms.ModelForm):
     image = forms.ImageField()
 
     class Meta:
         model = Store
-        fields = ["name", "latitude", "longitude", "merchant_address", "image","category"]
+        fields = ["name", "merchant_address", "add_prefix", "image", "category"]
 
 
 class GetWeekday(forms.ModelForm):
     class Meta:
         model = SetWeekDays
-        fields = ["name"]
+        fields = ["name", "store_name","start_time","end_time"]

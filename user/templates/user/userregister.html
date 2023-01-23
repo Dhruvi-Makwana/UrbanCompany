@@ -222,8 +222,8 @@
                     <form method="post" runat="server" enctype="multipart/form-data">
                      {% csrf_token %}
                     <!-- <img type="img" class="btn btn-primary">Edit Profile Picture</button> -->
-                    <label for="image" class="btn form-control-file" id="chooseimgbtn"><img src="{% static 'images/camera.svg'%}" height="20px" width="20px"></label>
-                    <input type="file" id="image" name= "{{userform.user_profile.html_name }}" accept="image/*">
+                    <label for="image" class="btn form-control-file" id="chooseimgbtn"><img src="{% static 'images/camera.svg'%}" height="20px" width="20px">
+                    <input type="file" id="image" name= "{{userform.user_profile.html_name }}" accept="image/*" style="display:none"></label></img>
                     </form>
                 </div>
             </div>
@@ -252,9 +252,8 @@
 
                     <input type="email" class="form-control bg-white emailimg" id="email" placeholder="Enter email" name="{{ userform.email.html_name }}">
                 </div>
-                <div class="mt-4">
-
-<!--                    <span id= "userid" style="display:hidden">{{ register.user }}</span>-->
+                <br>
+                <div class="mt-4>">
                     <input type="text" class="form-control bg-white addressimg" id="addressline1" placeholder="Address Line1" name="{{ addressform.address_line1.html_name }}">
 
                 </div>

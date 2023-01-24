@@ -20,7 +20,8 @@ class HomePage(ListView):
     model = Category
 
     def get_queryset(self):
-        return self.model.objects.filter(categorychoice__isnull=False)
+        # return self.model.objects.filter(store_category__isnull=False)
+        return self.model.objects.prefetch_related('store_category').filter(store_category__isnull=False)
 
 
 class StoreDetail(ListView):
@@ -38,31 +39,80 @@ class ShopDetail(DetailView):
     model = Store
 
 
-class TimeDetail(DetailView):
+class TimeDetail(ListView):
 
     template_name = "user/time_detail.html"
     model = SetWeekDays
-    context_object_name = 'settime'
 
     def get_queryset(self):
-        return self.objects.model.filter(store_name_id=self.kwargs.get('pk')).all()
+        return SetWeekDays.objects.filter(store_name_id=self.kwargs.get('pk')).all()
 
 
 class SelectUser(TemplateView):
     template_name = "user/userchoice.html"
 
 
-class UserUpdate(UpdateView):
-    model = User
-    template_name = "user/userregister.html"
-    fields = ['username', 'password', 'email', 'mobile_number', 'user_address']
+class SetShopTime(CreateView):
+    template_name = "user/managetime.html"
+    model = SetWeekDays
+    form_class = GetWeekday
+
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            "user/managetime.html",
+            {
+                "getweekday": GetWeekday(),
+            },
+        )
+    def post(self, request, *args, **kwargs):
+        getweekday = GetWeekday(request.POST)
+        if getweekday.is_valid():
+            getweekday.save()
+        return render(
+            request,
+            "user/managetime.html",
+            {
+                "getweekday": getweekday,
+            },
+        )
+
+
+class UserStoreUpdate(CreateView):
+    model = Store
+    template_name = "user/merchant.html"
+    form_class = AddStore
+
+    def get(self, request, *args, **kwargs):
+        return render(request,"user/merchant.html",{
+                # "merchantform": AddMerchant(),
+                "addstore": AddStore(),
+
+            },
+        )
+
+    def post(self, request, *args, **kwargs):
+        breakpoint()
+        # merchant = AddMerchant(request.POST)
+        addstore = AddStore(request.POST, request.FILES)
+        getweekday = GetWeekday(request.POST)
+
+        if addstore.is_valid() and getweekday.is_valid():
+            addstore.save()
+            # getweekday.save()
+
+        return render(request, "user/homepage.html", {
+                "addstore": addstore,
+            },
+        )
 
 
 class UserRegister(CreateView):
     form_class = AddUser, AddUserAddress
 
     def get(self, request, *args, **kwargs):
-        return render(request, "user/userregister.html", {})
+        adduser = AddUser()
+        return render(request, "user/userregister.html", {"userform": adduser})
 
     def post(self, request, *args, **kwargs):
         adduser = AddUser(request.POST, request.FILES)
@@ -72,7 +122,6 @@ class UserRegister(CreateView):
             adduser = adduser.save()
             adduser.set_password(adduser.password)
             adduser.save()
-
             adduser_address = adduser_address.save()
 
         return render(
@@ -85,31 +134,22 @@ class UserRegister(CreateView):
 class MerchantRegister(CreateView):
     template_name = 'user/merchant.html'
 
-    form_class = AddMerchant, AddStore, GetWeekday
+    form_class = AddStore, GetWeekday
 
     def get(self, request, *args, **kwargs):
-
         return render(
             request,
             "user/merchant.html",
             {
-                "merchantform": AddMerchant(),
                 "addstore": AddStore(),
                 "getweekday": GetWeekday(),
-
             },
         )
 
     def post(self, request, *args, **kwargs):
-
-        merchant = AddMerchant(
-            request.POST, initial={"role": "MERCHANT"})
         addstore = AddStore(request.POST, request.FILES)
         getweekday = GetWeekday(request.POST)
 
-        if merchant.is_valid():
-            merchant.save()
-        breakpoint()
         if addstore.is_valid() and getweekday.is_valid():
             addstore.save()
             getweekday.save()
@@ -118,7 +158,6 @@ class MerchantRegister(CreateView):
             request,
             "user/homepage.html",
             {
-                "merchantform": merchant,
                 "addstore": addstore,
                 "getweekday": getweekday,
             },

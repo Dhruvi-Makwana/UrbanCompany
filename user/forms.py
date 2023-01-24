@@ -1,5 +1,5 @@
 from django import forms
-from .models import User, Address, Store, SetWeekDays
+from .models import User, Address, Store, SetWeekDays,Category
 from django.contrib.auth.forms import AuthenticationForm
 
 
@@ -12,7 +12,7 @@ class AddUser(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["username", "password", "mobile_number", "email", "user_profile", "user_address"]
+        fields = ["username", "password", "mobile_number", "email", "user_profile", "user_address", "role"]
 
 
 class AddUserAddress(forms.ModelForm):
@@ -38,4 +38,4 @@ class AddStore(forms.ModelForm):
 class GetWeekday(forms.ModelForm):
     class Meta:
         model = SetWeekDays
-        fields = ["name", "store_name","start_time","end_time"]
+        fields = ["code", "store_name", "start_time", "end_time"]

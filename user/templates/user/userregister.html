@@ -262,6 +262,11 @@
 
                 </div>
 
+                   <div class="mt-4">
+                      <select id="role" class="form-control bg-white" name="{{ userform.role }}" >
+                    </select>
+                </div>
+
 
                 <div class="mb-4 mt-3" style="text-align:center;">
                     <button type="submit" class="btn btn-primary" value="submit" id="submit" >save</button>
@@ -325,6 +330,7 @@ var formData = new FormData();
         formData.append('email', $('#email').val())
         formData.append('address_line1 ', $('#addressline1').val())
         formData.append('city_name', $('#addressline2').val())
+        formData.append('role', $('#role').val())
         console.log(formData, "formData")
         //formData.append('action', 'create-post')
         formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')

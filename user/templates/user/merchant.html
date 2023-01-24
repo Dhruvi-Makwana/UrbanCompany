@@ -221,55 +221,6 @@
     <h1 class="display-4 pt-2 mt-3 merchanttext">
         Merchant Register
      </h1>
-    <div class="container rounded-4 mt-5 maindiv mt-2 mb-5">
-    <div class="row">
-        <div class="row collprow pt-2 mb-3 mt-3">
-            <div class="col-1">
-                <img src="{% static 'images/add.png' %}" height="30px" width="30px m-0">
-            </div>
-            <div class="col-10">
-                <a href="#demo2" data-toggle="collapse" parent="#accordion" class="toggleclass"> Personal Information</a>
-            </div>
-            <div class="col-1">
-                <div class="m-2">
-                    <img src="{% static 'images/caret-down-fill (1).svg' %}">
-                </div>
-            </div>
-        </div>
-
-        <div id="demo2" class="row panel-collapse collapse formrow">
-
-
-
-            <!-- <h3 style="text-align: center;color:#514644; font-family:Cursive; font-size:40px;">Personal information</h3> -->
-            <form method="post"  action="homepage.html">
-                   {% csrf_token %}
-                <div class="mt-4 ">
-                    <input type="text" class="form-control bg-white ownerimg" placeholder="Owner's Name" id="username" name="{{ merchantform.username.html_name }}">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                </div>
-
-                <div class="mt-4 ">
-                    <input type="password" class="form-control bg-white ownerimg" id="pass" placeholder="password" name="{{ merchantform.password.html_name }}">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                </div>
-
-                <div class="mt-4">
-                    <input type="number" class="form-control bg-light phoneimg"  id="phone" placeholder="Enter phone number" name="{{ merchantform.mobile_number.html_name }}">
-                </div>
-                <div class="mt-4">
-
-                    <input type="email" class="form-control bg-white emailimg"  id="email" placeholder="Enter email" name="{{ merchantform.email.html_name }}">
-                </div>
-                <div class="mb-4 mt-3" style="text-align:center;">
-                    <button type="submit" class="btn btn-primary" value="submit" id="submit">save</button>
-                </div>
-            </form>
-
-
-    </div>
-    </div>
-    </div>
 
     <div class="container rounded-4 mt-5 maindiv mb-5">
     <div class="row">
@@ -288,23 +239,21 @@
             </div>
         </div>
 
-
-
         <div id="demo1" class="panel-collapse collapse formrow">
             <!-- <h3 style="text-align: center;color:black; font-family:Cursive; font-size:40px;"><u><b>Shop Timing</b></u></h3> -->
-            <form method="post" action="../" runat="server" enctype="multipart/form-data">
+            <form method="post"runat="server" enctype="multipart/form-data">
                     {% csrf_token %}
                   <div class="mt-4" id="animcon">
-                <div class="imgdiv">
-                    <img src="{% static 'images/person-circle.svg' %}" alt="Cinque Terre" height="150px" width="150px" id="target">
-                </div>
-                <div class="mb-3 mt-2" style="text-align: center;">
+                        <div class="imgdiv">
+                            <img src="{% static 'images/person-circle.svg' %}" alt="Cinque Terre" height="150px" width="150px" id="target">
+                        </div>
+                        <div class="mb-3 mt-2" style="text-align: center;">
                     <!-- <img type="img" class="btn btn-primary">Edit Profile Picture</button> -->
-                    <label for="image" class="btn"><img src="{% static 'images/camera.svg' %}" height="20px" width="20px"></label>
-                    <input type="file" id="image" name="{{ addstore.image.html_name }}" accept="image/*" style="display:none">
+                        <label for="image" class="btn"><img src="{% static 'images/camera.svg' %}" height="20px" width="20px"></label>
+                        <input type="file" id="image" name="{{ addstore.image.html_name }}" accept="image/*" style="display:none">
 
-                </div>
-            </div>
+                        </div>
+                  </div>
 
 
                 <div class="mt-4 ">
@@ -320,83 +269,8 @@
                 </div>
 
                 <div class="mt-4">
-                    <select class="form-select form-select-lg" id="select1" name="{{ addstore.category}}"></select>
+                    <select class="form-select form-select-lg" id="select1" name="{{ addstore.category }}"></select>
                 </div>
-
-<!--                <div class="mt-4">-->
-<!--                        <a type="button" onclick="getlocation()" class="border border-1 form-control">Get Direction</a>-->
-<!--                    </div>-->
-<!--                <div class="mt-4 mb-4 row" id="showtable">-->
-
-<!--                    <input type="text" class="col m-1" placeholder="Latitude: 0.0.0.0" id="letitude">-->
-<!--                    <input type="text" class="col m-1" placeholder="Longtude: 0.0.0.0" id="longitude">                     -->
-<!--                </div>-->
-<!--               -->
-                <label for="opentime" class="occolor">Opening Time:</label>
-                <input type="time" name="opentime" id="otime" class="bg-white">
-
-                <label for="closetime" class="occolor ms-4">Closing Time:</label>
-                <input type="time" name="closetime" id="ctime" class="bg-white" oninput="settime1()"> <br><br>
-                <input type="checkbox" name="check" disabled="true" id="everydaytime" onclick="timeset()"><span class="days"> Set above opening time and closing time for each day.</span>
-
-                <br><br>
-                <div class="row p-2">
-                    <span class="col p-2"></span>
-                    <label class="col occolor">Opening Time:</label>
-                    <label class="col ms-3 occolor" >Closing Time:</label>
-                    <label class="col occolor" >OPEN/CLOSE</label>
-
-                </div>
-                <div class="row p-2">
-                    <input type="text"  class="col" name="{{getweekday.name.html_name" placeholder="Sunday" id="sunday" disabled="true">
-                    <input type="time" class="col bg-white" name="{{ getweekday.start_time.html_name}}" disabled="true" id="opentime">
-                    <input type="time" class="col ms-3 bg-white" name="{{ getweekday.end_time.html_name}}" disabled="true" id="closetime">
-                        <input type="checkbox" class="col" name="sunday" onclick="sundaychecked()" id="sundaycheckbox">
-                </div>
-
-                <div class="row p-2">
-                    <input type="text"  class="col" name="{{getweekday.name.html_name" placeholder="Monday" id="getmonday" disabled="true">
-                    <input type="time" class="col bg-white" disabled="true" id="monday" name="{{ getweekday.start_time.html_name}}">
-                    <input type="time" class="col ms-3 bg-white" disabled="true" id="monday1" name="{{ getweekday.end_time.html_name}}">
-                    <input type="checkbox" class="col bg-white" onclick="mondaychecked()" id="mondaycheckbox">
-
-                </div>
-
-                <div class="row p-2">
-                    <input type="text"  class="col" name="{{ getweekday.name.html_name" placeholder="Tuesday" id="gettuesday" disabled="true">
-                    <input type="time" class="col bg-white" disabled="true" id="tuesday" name="{{ getweekday.start_time.html_name}}">
-                    <input type="time" class="col ms-3 bg-white" disabled="true" id="tuesday1" name="{{ getweekday.end_time.html_name}}">
-                    <input type="checkbox" class="col bg-white" onclick="tuesdaychecked()" id="tuesdaycheckbox">
-                </div>
-
-                <div class="row p-2">
-                   <input type="text"  class="col" name="{{getweekday.name.html_name" placeholder="Wednesday" id="getwednesday" disabled="true">
-                    <input type="time" class="col bg-white" disabled="true" id="wednesday" name="{{ getweekday.start_time.html_name}}">
-                    <input type="time" class="col ms-3 bg-white" disabled="true" id="wednesday1" name="{{ getweekday.end_time.html_name}}">
-                    <input type="checkbox" class="col bg-white" onclick="wednesdaychecked()" id="wednesdaycheckbox">
-                </div>
-
-                <div class="row p-2">
-                    <input type="text"  class="col" name="{{getweekday.name.html_name" placeholder="Thursday" id="getthursday" disabled="true">
-                    <input type="time" class="col bg-white" disabled="true" id="thursday" name="{{ getweekday.start_time.html_name}}">
-                    <input type="time" class="col ms-3 bg-white" disabled="true" id="thursday1" name="{{ getweekday.end_time.html_name}}">
-                    <input type="checkbox" class="col bg-white" onclick="thursdaychecked()" id="thursdaycheckbox">
-                </div>
-
-                <div class="row p-2">
-                    <input type="text"  class="col" name="{{getweekday.name.html_name" placeholder="Friday" id="getfriday" disabled="true">
-                    <input type="time" class="col bg-white" disabled="true" id="friday" name="{{ getweekday.start_time.html_name}}">
-                    <input type="time" class="col ms-3 bg-white" disabled="true" id="friday1" name="{{ getweekday.end_time.html_name}}">
-                    <input type="checkbox" class="col bg-white" onclick="fridaychecked()"id="fridaycheckbox">
-                </div>
-
-                <div class="row p-2">
-                    <input type="text"  class="col" name="{{getweekday.name.html_name" placeholder="Saturday" id="getsaturday" disabled="true">
-                    <input type="time" class="col bg-white" disabled="true" id="saturday" name="{{ getweekday.start_time.html_name}}">
-                    <input type="time" class="col ms-3 bg-white" disabled="true" id="saturday1" name="{{ getweekday.end_time.html_name}}">
-                    <input type="checkbox" class="col bg-white" onclick="saturdaychecked()" id="saturdaycheckbox">
-                </div>
-
                  <br>
                  <div class="mb-4 mt-0" style="text-align: center;">
                     <button type="submit" class="btn btn-primary" value="submit" id="submit1">save</button>
@@ -407,6 +281,8 @@
     </div>
 
 </div>
+<a href="{% url 'shoptime' pk=user.id %}" type="button" class="btn ms-2" >add time</a>
+
 
 
 <script>
@@ -452,203 +328,16 @@ showImage(src,target);
 
 
 
-// on check box click automatic fill everyday timming
-
-function timeset()
-{
-    if($('#everydaytime').is(":checked"))
-    {
-        const a = document.getElementById("otime").value;
-        const b  =document.getElementById("ctime").value;
-        document.getElementById("opentime").value = a;
-        document.getElementById("closetime").value = b;
-        document.getElementById("sundaycheckbox").checked = true;
-        document.getElementById("monday").value = a;
-        document.getElementById("monday1").value = b;
-        document.getElementById("mondaycheckbox").checked = true;
-        document.getElementById("tuesday").value= a ;
-        document.getElementById("tuesday1").value = b;
-        document.getElementById("tuesdaycheckbox").checked = true;
-        document.getElementById("wednesday").value = a;
-        document.getElementById("wednesday1").value = b;
-        document.getElementById("wednesdaycheckbox").checked = true;
-        document.getElementById("thursday").value = a;
-        document.getElementById("thursday1").value = b;
-        document.getElementById("thursdaycheckbox").checked = true;
-        document.getElementById("friday").value = a;
-        document.getElementById("friday1").value = b;
-        document.getElementById("fridaycheckbox").checked = true;
-        document.getElementById("saturday").value = a;
-        document.getElementById("saturday1").value = b;
-        document.getElementById("saturdaycheckbox").checked = true;
-    }
-}
-
- var gettime1 = document.getElementById("otime").value;
- console.log(gettime1);
-
-
-    function settime1()
-    {
-    var t1 = document.getElementById("otime");
-    var t2 = document.getElementById("ctime");
-    var c = document.getElementById("everydaytime");
-    if(t1.value !== null && t2.value !== null)
-    {
-        c.removeAttribute("disabled");
-    }
-
-    }
-
-    function sundaychecked()
-    {
-        // $('#check').attr({disabled:false});
-        var check = document.getElementById("opentime");
-        var check2 = document.getElementById("closetime");
-        var check3 = document.getElementById("sunday");
-        var ch1 = document.getElementById("sundaycheckbox");
-        if(ch1.checked)
-        {
-        check.removeAttribute("disabled");
-        check2.removeAttribute("disabled");
-        check3.removeAttribute("disabled");
-        }
-        else
-        {
-            document.getElementById("opentime").disabled = true;
-            document.getElementById("closetime").disabled = true
-             document.getElementById("sunday").disabled = true
-        }
-        // check.setAttribute("disabled", false);
-        // document.getElementById("check").disabled = false;
-
-    }
-    function mondaychecked()
-    {
-        var ch2 = document.getElementById("mondaycheckbox");
-        var check = document.getElementById("monday");
-        var check2 = document.getElementById("monday1");
-        var check3 = document.getElementById("getmonday");
-        if(ch2.checked)
-        {
-        check.removeAttribute("disabled");
-        check2.removeAttribute("disabled");
-        check3.removeAttribute("disabled");
-        }
-        else
-        {
-            document.getElementById("monday").disabled = true;
-            document.getElementById("monday1").disabled = true;
-            document.getElementById("getmonday").disabled = true
-        }
-    }
-    function tuesdaychecked()
-    {
-        var ch3 = document.getElementById("tuesdaycheckbox");
-        var check = document.getElementById("tuesday");
-        var check2 = document.getElementById("tuesday1");
-        var check3 = document.getElementById("gettuesday");
-        if(ch3.checked)
-        {
-            check.removeAttribute("disabled");
-            check2.removeAttribute("disabled");
-            check3.removeAttribute("disabled");
-        }
-        else{
-            document.getElementById("tuesday").disabled = true;
-            document.getElementById("tuesday1").disabled = true;
-            document.getElementById("gettuesday").disabled = true
-        }
-    }
-    function wednesdaychecked()
-    {
-        var ch4 = document.getElementById("wednesdaycheckbox");
-        var check = document.getElementById("wednesday");
-        var check2 = document.getElementById("wednesday1");
-        var check3 = document.getElementById("getwednesday");
-        if(ch4.checked)
-        {
-
-
-        check.removeAttribute("disabled");
-        check2.removeAttribute("disabled");
-        check3.removeAttribute("disabled");
-
-        }
-        else
-        {
-            document.getElementById("wednesday").disabled = true;
-            document.getElementById("wednesday1").disabled = true;
-            document.getElementById("getwednesday").disabled = true
-        }
-    }
-    function thursdaychecked()
-    {
-        var ch5 = document.getElementById("thursdaycheckbox");
-        var check = document.getElementById("thursday");
-        var check2 = document.getElementById("thursday1");
-        var check3 = document.getElementById("getthursday");
-        if(ch5.checked)
-        {
-        check.removeAttribute("disabled");
-        check2.removeAttribute("disabled");
-        check3.removeAttribute("disabled");
-        }
-        else{
-            document.getElementById("thursday").disabled = true;
-            document.getElementById("thursday1").disabled = true;
-            document.getElementById("getthursday").disabled = true
-        }
-    }
-    function fridaychecked()
-    {
-        var ch6 = document.getElementById("fridaycheckbox");
-        var check = document.getElementById("friday");
-        var check2 = document.getElementById("friday1");
-        var check3 = document.getElementById("getfriday");
-        if(ch6.checked)
-        {
-        check.removeAttribute("disabled");
-        check2.removeAttribute("disabled");
-        check3.removeAttribute("disabled");
-        }
-        else{
-            document.getElementById("friday").disabled = true;
-            document.getElementById("friday1").disabled = true;
-            document.getElementById("getfriday").disabled = true
-        }
-    }
-    function saturdaychecked()
-    {
-        var ch7 = document.getElementById("saturdaycheckbox");
-        var check = document.getElementById("saturday");
-        var check2 = document.getElementById("saturday1");
-        var check3 = document.getElementById("getsaturday");
-        if(ch7.checked)
-        {
-
-        check.removeAttribute("disabled");
-        check2.removeAttribute("disabled");
-        check3.removeAttribute("disabled");
-        }
-        else{
-            document.getElementById("saturday").disabled = true;
-            document.getElementById("saturday1").disabled = true;
-            document.getElementById("getsaturday").disabled = true
-        }
-    }
-
-
-
 var formData1 = new FormData();
 
       $(document).on('click', '#submit', function(e) {
          e.preventDefault()
-
-        formData1.append('username', $('#username').val())
-        formData1.append('password', $('#pass').val())
-        formData1.append('mobile_number', $('#phone').val())
-        formData1.append('email', $('#email').val())
+        formData.append('image', storeFileImage)
+        formData.append('image', $('input[type=file]')[0].files[0])
+        formData1.append('name', $('#storename').val())
+        formData1.append('add_prefix', $('#addressline1').val())
+        formData1.append('merchant_address', $('#addressline2').val())
+        formData1.append('category', $('#select1').val())
         formData1.append('csrfmiddlewaretoken', '{{ csrf_token }}')
           $.ajax({
               type: 'POST',
@@ -666,75 +355,6 @@ var formData1 = new FormData();
           })
       })
 
-
-
-
-var formData = new FormData();
-
-      $(document).on('click', '#submit1', function(e) {
-
-         formData.append('image', storeFileImage)
-        formData.append('image', $('input[type=file]')[0].files[0])
-        formData.append('category', $('#select1').val())
-
-        formData.append('name', $('#storename').val())
-        formData.append('add_prefix', $('#addressline1').val())
-        formData.append('merchant_address', $('#addressline2').val())
-        formData.append('category', $('#select1').val())
-
-        formData.append('name', $('#sunday').val())
-        formData.append('store_name', $('#storename').val())
-        formData.append('start_time', $('#opentime').val())
-        formData.append('end_time', $('#closetime').val())
-
-
-        formData.append('name', $('#getmonday').val())
-        formData.append('store_name', $('#storename').val())
-        formData.append('start_time', $('#monday').val())
-        formData.append('end_time', $('#monday1').val())
-
-        formData.append('name', $('#gettuesday').val())
-        formData.append('store_name', $('#storename').val())
-        formData.append('start_time', $('#tuesday').val())
-        formData.append('end_time', $('#tuesday1').val())
-
-         formData.append('name', $('#getwednesday').val())
-        formData.append('store_name', $('#storename').val())
-        formData.append('start_time', $('#wednesday').val())
-        formData.append('end_time', $('#wednesday1').val())
-
-
-        formData.append('name', $('#getthursday').val())
-        formData.append('store_name', $('#storename').val())
-        formData.append('start_time', $('#thursday').val())
-        formData.append('end_time', $('#thursday1').val())
-
-        formData.append('name', $('#getfriday').val())
-        formData.append('store_name', $('#storename').val())
-        formData.append('start_time', $('#friday').val())
-        formData.append('end_time', $('#friday1').val())
-
-        formData.append('name', $('#getsaturday').val())
-<!--        formData.append('store_name', $('#storename').val())-->
-        formData.append('start_time', $('#saturdsay').val())
-
-        formData.append('end_time', $('#saturday1').val())
-        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
-          $.ajax({
-              type: 'POST',
-              url: $(this).attr('action'),
-              data: formData,
-              cache: false,
-              processData: false,
-              contentType: false,
-              success: function (){
-                  alert('The post has been created!')
-              },
-              error: function(xhr, errmsg, err) {
-                  console.log(xhr.status + ":" + xhr.responseText)
-              }
-          })
-      })
 </script>
 </body>
 </html>

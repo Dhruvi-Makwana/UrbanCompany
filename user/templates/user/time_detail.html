@@ -33,13 +33,14 @@
         </thead>
         <tbody>
 
+        {% for setttime in object_list %}
 
             <tr>
-                <td>{{ settime.name }}</td>
+                <td>{{ settime.name}}</td>
                 <td>{{ settime.start_time }}</td>
                 <td>{{ settime.end_time }}</td>
             </tr>
-
+                {% endfor %}
 
     </tbody>
   </table>

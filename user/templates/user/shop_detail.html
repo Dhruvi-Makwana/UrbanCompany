@@ -54,8 +54,6 @@
          </h1>
     </div>
 
-
-
                     <div class="card cardpadding border border-0 pb-3 mt-0 ps-3" style="width: 70rem; border-radius: 30px;">
                         <div class="imgdiv">
                         <img src="{{object.image.url}}" class="rounded-circle border border-1" height="180px" width="150px">
@@ -78,7 +76,7 @@
                         </div>
                     </div>
                      <div class="mb-4 mt-4" style="text-align: center;">
-                         {{object.id }}
+
                               <a href="{% url 'time' pk=object.id %}" type="button" class="btn btn-primary">Book</a>
                         </div>
 

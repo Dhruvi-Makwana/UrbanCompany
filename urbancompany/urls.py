@@ -24,12 +24,13 @@ urlpatterns = [
     path("homepage/", include('user.urls')),
     path("", Login.as_view(), name='login'),
     path("select_user/", SelectUser.as_view(), name="selectuser"),
-    path("select_user/user_register", UserRegister.as_view(), name="userregister"),
+    path("user_register", UserRegister.as_view(), name="userregister"),
     path(
         "select_user/merchant_register",
         MerchantRegister.as_view(),
         name="merchantregister",
     ),
+
 
 ]
 

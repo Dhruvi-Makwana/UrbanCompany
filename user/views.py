@@ -3,6 +3,8 @@ from .models import User, Category, Store, SetWeekDays
 from django.contrib.auth.views import (
     LoginView,
    )
+from django.http import JsonResponse
+from django.core import serializers
 
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView
 from .forms import (
@@ -13,6 +15,7 @@ from .forms import (
     GetWeekday,
     UserLoginForm,
 )
+
 
 
 class HomePage(ListView):
@@ -59,20 +62,17 @@ class SetShopTime(CreateView):
 
     def get(self, request, *args, **kwargs):
         return render(
-            request,
-            "user/managetime.html",
-            {
+            request,"user/managetime.html",{
                 "getweekday": GetWeekday(),
             },
         )
+
     def post(self, request, *args, **kwargs):
         getweekday = GetWeekday(request.POST)
         if getweekday.is_valid():
             getweekday.save()
         return render(
-            request,
-            "user/managetime.html",
-            {
+            request,"user/managetime.html", {
                 "getweekday": getweekday,
             },
         )
@@ -83,23 +83,23 @@ class UserStoreUpdate(CreateView):
     template_name = "user/merchant.html"
     form_class = AddStore
 
-    def get(self, request, *args, **kwargs):
-        return render(request,"user/merchant.html",{
-                # "merchantform": AddMerchant(),
-                "addstore": AddStore(),
+    def get_cities(request):
+        get_category = Category.objects.all()
+        json_data = serializers.serialize("json", get_category)
+        return JsonResponse(json_data, safe=False)
 
+    def get(self, request, *args, **kwargs):
+        return render(request, "user/merchant.html", {
+                "addstore": AddStore(),
             },
         )
 
     def post(self, request, *args, **kwargs):
         breakpoint()
-        # merchant = AddMerchant(request.POST)
         addstore = AddStore(request.POST, request.FILES)
-        getweekday = GetWeekday(request.POST)
 
-        if addstore.is_valid() and getweekday.is_valid():
+        if addstore.is_valid():
             addstore.save()
-            # getweekday.save()
 
         return render(request, "user/homepage.html", {
                 "addstore": addstore,

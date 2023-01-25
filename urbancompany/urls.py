@@ -30,8 +30,6 @@ urlpatterns = [
         MerchantRegister.as_view(),
         name="merchantregister",
     ),
-
-
 ]
 
 urlpatterns += (

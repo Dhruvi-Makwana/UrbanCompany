@@ -240,7 +240,7 @@
 
 
                 <div class="row p-2">
-                    <input type="text"  class="col" value="{{getweekday.code.html_name}}" placeholder="Sunday" id="sunday" disabled="true">
+                    <input type="text"  class="col" value="{{getweekday.code }}" placeholder="Sunday" id="sunday" disabled="true">
                     <input type="time" class="col bg-white" name="{{ getweekday.start_time.html_name}}" disabled="true" id="opentime">
                     <input type="time" class="col ms-3 bg-white" name="{{ getweekday.end_time.html_name}}" disabled="true" id="closetime">
                         <input type="checkbox" class="col" name="sunday" onclick="sundaychecked()" id="sundaycheckbox">
@@ -486,6 +486,13 @@ function timeset()
             document.getElementById("getsaturday").disabled = true
         }
     }
+
+
+
+
+
+
+
 var formData = new FormData();
 
       $(document).on('click', '#submit1', function(e) {
